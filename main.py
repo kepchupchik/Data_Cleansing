@@ -1164,7 +1164,16 @@ def on_plot_type_change(event=None):
 
 
 def show_plot():
-    reset_outlier_state()
+    global current_outlier_records, current_outlier_lookup, selected_outlier_rows
+    global current_outlier_artist, current_boxplot_bounds
+
+    # Сбрасываем состояние выбросов только если переключаемся с боксплота на другой тип графика
+    plot_kind = plot_type_var.get() or DEFAULT_PLOT
+    is_boxplot = pd.api.types.is_numeric_dtype(my_df[selected_now]) if my_df is not None and selected_now else False
+    is_boxplot = is_boxplot and plot_kind == "Боксплот"
+
+    if not is_boxplot:
+        reset_outlier_state(hide_panel=True)
 
     if my_df is None:
         draw_placeholder("Откройте CSV-файл для начала работы.")
