@@ -92,10 +92,10 @@ class DataLogicTests(unittest.TestCase):
         overview = build_dataset_overview_text(df)
         column_text = build_column_description(df, "age")
 
-        self.assertIn("Rows: 3", overview)
-        self.assertIn("Missing values: 1", overview)
-        self.assertIn("Column: age", column_text)
-        self.assertIn("Missing: 1", column_text)
+        self.assertIn("Строк: 3", overview)
+        self.assertIn("Пропусков: 1", overview)
+        self.assertIn("Столбец: age", column_text)
+        self.assertIn("Пропусков: 1", column_text)
 
 
 if __name__ == "__main__":
